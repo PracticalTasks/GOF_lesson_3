@@ -7,7 +7,7 @@
 using namespace std;
 using namespace MyTools;
 
-bool Tank::isInside(double x1, double x2) const
+bool TankAdaptee::isInRange(double x1, double x2) const
 {
 	const double XBeg = x + 2;
 	const double XEnd = x + width - 1;
@@ -30,7 +30,7 @@ bool Tank::isInside(double x1, double x2) const
 	return false;
 }
 
-void Tank::Draw() const
+void TankAdaptee::Paint() const
 {
 	MyTools::ScreenSingleton::getInstance().SetColor(CC_Brown);
 	ScreenSingleton::getInstance().GotoXY(x, y - 3);
@@ -41,4 +41,44 @@ void Tank::Draw() const
 	cout << "    #####";
 	ScreenSingleton::getInstance().GotoXY(x,y);
 	cout << " ###########";
+}
+
+void TankAdapter::SetPos(double nx, double ny)
+{
+	tank.SetPos(nx, ny);
+}
+
+uint16_t TankAdapter::GetWidth() const
+{
+	return tank.GetWidth();
+}
+
+double TankAdapter::GetX() const
+{
+	return tank.GetX();
+}
+
+double TankAdapter::GetY() const
+{
+	return tank.GetY();
+}
+
+void TankAdapter::SetWidth(uint16_t widthN)
+{
+	tank.SetWidth(widthN);
+}
+
+void TankAdapter::Draw() const
+{
+	tank.Paint();
+}
+
+bool TankAdapter::isInside(double x1, double x2)const
+{
+	return tank.isInRange(x1, x2);
+}
+
+uint16_t TankAdapter::GetScore() const
+{
+	return tank.GetScore();
 }
