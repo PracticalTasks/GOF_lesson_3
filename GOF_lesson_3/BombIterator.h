@@ -9,7 +9,7 @@ class BombIterator
 	bool check;
 
 public:
-	BombIterator(std::vector<DynamicObject*> &_refVec) :refVec(_refVec),bombIdx(0), idx(0),check(false)
+	BombIterator(std::vector<DynamicObject*>& _refVec) : refVec(_refVec), bombIdx(0), idx(0), check(false)
 	{
 		for (; idx < refVec.size(); idx++)
 		{
@@ -23,56 +23,9 @@ public:
 		}
 	}
 
-
-	Bomb* operator++ () // префиксный инкремент
-	{
-
-		for (; idx < refVec.size(); idx++)
-		{
-			Bomb* pBomb = dynamic_cast<Bomb*>(refVec[idx]);
-			if (pBomb != nullptr)
-			{
-				bombIdx = idx++;
-				check = true;
-				return pBomb;
-
-			}
-		}
-
-		check = false;
-
-		return nullptr;
-	}
-
-	Bomb* operator-- () // префиксный инкремент
-	{
-
-		for (; idx >= 0; idx--)
-		{
-			Bomb* pBomb = dynamic_cast<Bomb*>(refVec[idx]);
-			if (pBomb != nullptr)
-			{
-				bombIdx = idx--;
-				check = true;
-				return pBomb;
-
-			}
-		}
-
-		check = false;
-		return nullptr;
-	}
-
-	Bomb* operator*()
-	{
-		
-		Bomb* pBomb = dynamic_cast<Bomb*>(refVec[bombIdx]);
-		return pBomb;
-	}
-
-	bool checkIt()
-	{
-		return check;
-	}
+	Bomb* operator++ ();
+	Bomb* operator-- ();
+	Bomb* operator*();
+	bool checkIt();
 
 };

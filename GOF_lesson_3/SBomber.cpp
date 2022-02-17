@@ -130,7 +130,7 @@ void SBomber::CheckBombsAndGround()
     const double y = pGround->GetY();
     for (size_t i = 0; i < vecBombs.size(); i++)
     {
-        if (vecBombs[i]->GetY() >= y) // ����������� ����� � ������
+        if (vecBombs[i]->GetY() >= y) // Пересечение бомбы с землей
         {
             pGround->AddCrater(vecBombs[i]->GetX());
             CheckDestoyableObjects(vecBombs[i]);
@@ -227,7 +227,7 @@ Ground* SBomber::FindGround() const
 vector<Bomb*> SBomber::FindAllBombs() const
 {
     vector<Bomb*> vecBombs;
-	vector<DynamicObject*> vec = vecDynamicObj;
+	vector<DynamicObject*> vec = vecDynamicObj;		//Не могу передать vecDinamicObj в конструктор
 	BombIterator it(vec);
 
 	while(it.checkIt())
